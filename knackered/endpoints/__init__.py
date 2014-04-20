@@ -1,3 +1,4 @@
-__all__ = ["config"]
+__all__ = ["config", "common"]
 
 from knackered.endpoints.config import config
+from knackered.endpoints.common import common
