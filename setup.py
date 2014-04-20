@@ -17,6 +17,9 @@ setup(
     description="A network competition scoring engine",
     license="MIT",
     url='https://github.com/AscSecTeam/knackered',
+    scripts=[
+        "scripts/knackered",
+    ],
     classifiers=[
         "Intended Audience :: Developers",
         "Programming Language :: Python",
