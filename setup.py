@@ -10,10 +10,16 @@ setup(
     author=__author__,
     author_email="ascsecteam@live.com",
     packages=find_packages(),
-    install_requires=["docopt==0.6.1"],
+    install_requires=[
+        "docopt==0.6.1",
+        "Flask==0.10.1",
+    ],
     description="A network competition scoring engine",
     license="MIT",
     url='https://github.com/AscSecTeam/knackered',
+    scripts=[
+        "scripts/knackered",
+    ],
     classifiers=[
         "Intended Audience :: Developers",
         "Programming Language :: Python",

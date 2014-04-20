@@ -5,7 +5,9 @@ from ConfigParser import RawConfigParser
 
 class ConfigObject(object):
     __slots__ = ["data"]
-    data = {}
+
+    def __init__(self):
+        self.data = {}
 
     def __getattr__(self, name):
         if name in self.data:
@@ -21,6 +23,7 @@ class Section(ConfigObject):
     __slots__ = ["name", "data"]
 
     def __init__(self, name, data):
+        self.data = {}
         self.name = name
         # try to auto convert the values
         for name, value in data:
@@ -48,3 +51,8 @@ class Settings(ConfigObject):
         config.read([config_file])
         for section in config.sections():
             self.data[section] = Section(section, config.items(section))
+
+        if "app" not in self.data:
+            self.data["app"] = Section("app", {})
+        if "access_key" not in self.data["app"].data:
+            self.data["app"].data["access_key"] = "knackered"
