@@ -51,3 +51,8 @@ class Settings(ConfigObject):
         config.read([config_file])
         for section in config.sections():
             self.data[section] = Section(section, config.items(section))
+
+        if "app" not in self.data:
+            self.data["app"] = Section("app", {})
+        if "access_key" not in self.data["app"].data:
+            self.data["app"].data["access_key"] = "knackered"
