@@ -11,12 +11,16 @@ Options:
 """
 from docopt import docopt
 
-import knackered
+from knackered import __version__
+from knackered.app import create_app
+from knackered.settings import Settings
 
 
 def main():
-    args = docopt(__doc__, version="knackered %s" % knackered.__version__)
-    print args
+    args = docopt(__doc__, version="knackered %s" % __version__)
+    settings = Settings(args["--config"])
+    app = create_app(settings)
+    app.run()
 
 
 if __name__ == "__main__":
