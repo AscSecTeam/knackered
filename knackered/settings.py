@@ -1,6 +1,12 @@
 __all__ = ["ConfigObject", "Section", "Settings"]
 
 from ConfigParser import RawConfigParser
+import os
+
+DEFAULT_CONFIG = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
+    "config/default.ini"
+)
 
 
 class ConfigObject(object):
@@ -48,11 +54,6 @@ class Settings(ConfigObject):
         self.data = {}
         self.config_file = config_file
         config = RawConfigParser(allow_no_value=True)
-        config.read([config_file])
+        config.read([DEFAULT_CONFIG, config_file])
         for section in config.sections():
             self.data[section] = Section(section, config.items(section))
-
-        if "app" not in self.data:
-            self.data["app"] = Section("app", {})
-        if "access_key" not in self.data["app"].data:
-            self.data["app"].data["access_key"] = "knackered"
