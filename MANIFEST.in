@@ -1,0 +1,6 @@
+include README.* LICENSE requirements.txt setup.py
+recursive-include knackered *.py
+recursive-include config *.ini
+recursive-include scripts *
+global-exclude *.pyc
+global-exclude *.pyo
