@@ -1,5 +1,6 @@
 from flask import Flask, request
 
+from knackered.db import Database
 from knackered.settings import Section
 from knackered.endpoints import config
 from knackered.endpoints import common
@@ -17,6 +18,8 @@ def create_app(settings):
     #  from flask import current_app
     #  current_app.config.get("settings")
     app.config["settings"] = settings
+
+    app.config["db"] = Database(settings.db.source)
 
     app.register_blueprint(common)
     app.register_blueprint(config, url_prefix="/config")
